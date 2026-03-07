@@ -56,64 +56,36 @@ const ReconcileForm = () => {
     };
 
     return (
-        <div style={styles.container}>
-            <h2>Bank Reconciliation System</h2>
+        <div className="sony-container">
+            <h2 className="sony-title">Bank Reconciliation System</h2>
 
-            <form onSubmit={handleSubmit} style={styles.form}>
-                <div style={styles.inputGroup}>
-                    <label>Upload Bank Statement (PDF)</label>
+            <form onSubmit={handleSubmit} className="sony-form">
+                <div className="sony-input-group">
+                    <label className="sony-label">Upload Bank Statement (PDF)</label>
                     <input
                         type="file"
                         accept="application/pdf"
+                        className="sony-file-input"
                         onChange={(e) => setBankFile(e.target.files[0])}
                     />
                 </div>
 
-                <div style={styles.inputGroup}>
-                    <label>Upload Ledger Statement (PDF)</label>
+                <div className="sony-input-group">
+                    <label className="sony-label">Upload Ledger Statement (PDF)</label>
                     <input
                         type="file"
                         accept="application/pdf"
+                        className="sony-file-input"
                         onChange={(e) => setLedgerFile(e.target.files[0])}
                     />
                 </div>
 
-                <button type="submit" disabled={loading} style={styles.button}>
+                <button type="submit" disabled={loading} className="sony-button">
                     {loading ? "Processing..." : "Reconcile & Download Excel"}
                 </button>
             </form>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        maxWidth: "500px",
-        margin: "80px auto",
-        padding: "30px",
-        borderRadius: "10px",
-        boxShadow: "0 0 15px rgba(0,0,0,0.1)",
-        textAlign: "center",
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-    },
-    inputGroup: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "start",
-    },
-    button: {
-        padding: "12px",
-        border: "none",
-        borderRadius: "6px",
-        backgroundColor: "#007bff",
-        color: "white",
-        fontWeight: "bold",
-        cursor: "pointer",
-    },
 };
 
 export default ReconcileForm;
