@@ -2,7 +2,6 @@
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import poppler from "pdf-poppler";
 import Tesseract from "tesseract.js";
 import crypto from "crypto";
 
@@ -66,17 +65,15 @@ export const extractTextWithOCR = async (pdfPath) => {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  const options = {
-    format: "png",
-    out_dir: outputDir,
-    out_prefix: "page",
-    page: null,
-    scale: 3000,
-  };
-
   try {
-    console.log("📸 Converting PDF to high-res images...");
-    await poppler.convert(pdfPath, options);
+    console.log("📸 Converting PDF to high-res images with pdftoppm...");
+    // pdftoppm ships with poppler-utils (same package as pdftotext above).
+    // -r 300 → 300 DPI, good balance between accuracy and speed for OCR.
+    // Output files: page-1.png, page-2.png, ...
+    const outPrefix = path.join(outputDir, "page");
+    execSync(`pdftoppm -png -r 300 "${pdfPath}" "${outPrefix}"`, {
+      stdio: "inherit",
+    });
 
     const files = fs
       .readdirSync(outputDir)
