@@ -10,13 +10,13 @@ const ReconcileForm = () => {
         e.preventDefault();
 
         if (!bankFile || !ledgerFile) {
-            alert("Please upload both PDFs");
+            alert("Please upload both files");
             return;
         }
 
         const formData = new FormData();
-        formData.append("bankPdf", bankFile);
-        formData.append("ledgerPdf", ledgerFile);
+        formData.append("bankFile", bankFile);
+        formData.append("ledgerFile", ledgerFile);
 
         try {
             setLoading(true);
@@ -32,8 +32,6 @@ const ReconcileForm = () => {
                 }
             );
 
-
-            // Create download link
             const url = window.URL.createObjectURL(
                 new Blob([response.data])
             );
@@ -64,17 +62,17 @@ const ReconcileForm = () => {
                     <label className="sony-label">Upload Bank Statement (PDF)</label>
                     <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".pdf,.xlsx,.xlsm,.xls"
                         className="sony-file-input"
                         onChange={(e) => setBankFile(e.target.files[0])}
                     />
                 </div>
 
                 <div className="sony-input-group">
-                    <label className="sony-label">Upload Ledger Statement (PDF)</label>
+                    <label className="sony-label">Upload Company Ledger (PDF or Excel)</label>
                     <input
                         type="file"
-                        accept="application/pdf"
+                        accept=".pdf,.xlsx,.xlsm,.xls"
                         className="sony-file-input"
                         onChange={(e) => setLedgerFile(e.target.files[0])}
                     />
