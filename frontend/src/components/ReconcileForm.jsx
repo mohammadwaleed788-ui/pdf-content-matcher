@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const ReconcileForm = () => {
     const [bankFile, setBankFile] = useState(null);
     const [ledgerFile, setLedgerFile] = useState(null);
@@ -22,7 +24,7 @@ const ReconcileForm = () => {
             setLoading(true);
 
             const response = await axios.post(
-                "http://localhost:5000/api/reconcile",
+                `${API_URL}/api/reconcile`,
                 formData,
                 {
                     headers: {
