@@ -7,9 +7,28 @@
   justify-content: center;
 }
 
+.app-shell {
+  width: 100%;
+}
+
+.app-actions {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.app-logout-button {
+  margin-top: 0;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
 .sony-container {
   width: 100%;
   max-width: 520px;
+  margin: 0 auto;
   background-color: rgba(20, 20, 20, 0.6);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -46,6 +65,7 @@
   letter-spacing: 0.5px;
 }
 
+.sony-text-input,
 .sony-file-input {
   display: block;
   width: 100%;
@@ -55,15 +75,20 @@
   border-radius: 8px;
   color: #ffffff;
   font-size: 14px;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
+.sony-file-input {
+  cursor: pointer;
+}
+
+.sony-text-input:hover,
 .sony-file-input:hover {
   background-color: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+.sony-text-input:focus,
 .sony-file-input:focus {
   outline: none;
   border-color: #ffffff;
@@ -96,7 +121,12 @@
   cursor: not-allowed;
 }
 
-/* Custom file upload styling to hide default input */
+.sony-error {
+  margin: -8px 0 0;
+  color: #ff6f6f;
+  font-size: 13px;
+}
+
 input[type="file"]::file-selector-button {
   padding: 8px 16px;
   border-radius: 6px;
